@@ -1,16 +1,16 @@
 [
-{
-  "modid": "probe",
-  "name": "Probe",
-  "description": "Dump information to .zsrc file for future use.",
-  "version": "${version}",
-  "mcversion": "${mcversion}",
-  "url": "https://github.com/Yesterday17/Probe",
-  "updateUrl": "",
-  "authorList": ["Yesterday17"],
-  "credits": "",
-  "logoFile": "",
-  "screenshots": [],
-  "dependencies": []
-}
+    {
+      "modid": "multiblockedprobe",
+      "name": "MultiblockedProbe",
+      "description": "ZenScript BracketHandler resources dumper for VSCode plugin. Works with Multiblocked.",
+      "version": "${version}",
+      "mcversion": "${mcversion}",
+      "url": "https://github.com/TheKeepers/MultiblockedProbe",
+      "updateUrl": "",
+      "authorList": ["RisingInIris2017", "GBLodb", "LubangSF"],
+      "credits": "Yesterday17",
+      "logoFile": "",
+      "screenshots": [],
+      "dependencies": []
+    }
 ]

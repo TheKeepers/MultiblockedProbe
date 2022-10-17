@@ -1,19 +1,28 @@
 buildscript {
     repositories {
-        jcenter()
-        maven { url = "https://files.minecraftforge.net/maven" }
+        mavenCentral()
+        maven {
+            name = "ForgeMaven"
+            url = "https://maven.minecraftforge.net/"
+        }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+        classpath "net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT"
     }
 }
 
 apply plugin: 'net.minecraftforge.gradle.forge'
-apply plugin: "maven"
 
-version = "0.1.24"
-group = "cn.yesterday17"
-archivesBaseName = "probe"
+// change FG2's default maven url to the new one.
+repositories.each {
+    if (it instanceof MavenArtifactRepository && it.url.toString() == "https://files.minecraftforge.net/maven") {
+        it.url = "https://maven.minecraftforge.net/"
+    }
+}
+
+version = "0.0.1"
+group = "TheKeepers"
+archivesBaseName = "multiblockedprobe"
 
 sourceCompatibility = targetCompatibility = '1.8'
 compileJava {
@@ -36,20 +45,9 @@ repositories {
         url "http://maven.blamejared.com/"
     }
     maven {
-        name = "CurseForge"
-        url = "https://minecraft.curseforge.com/api/maven"
-    }
-
-    maven {
         // location of the maven that hosts JEI files
         name = "Progwml6 maven"
         url = "http://dvs1.progwml6.com/files/maven"
-    }
-
-    maven {
-        // location of a maven mirror for JEI files, as a fallback
-        name = "ModMaven"
-        url = "modmaven.k-4u.nl"
     }
 }
 
@@ -65,15 +63,15 @@ processResources {
 
     // replace stuff in mcmod.info, nothing else
     from(sourceSets.main.resources.srcDirs) {
-        include 'mcmod.info'
+        include "mcmod.info"
 
         // replace version and mcversion
-        expand 'version': project.version, 'mcversion': project.minecraft.version
+        expand "version": project.version, "mcversion": project.minecraft.version
     }
 
-    // copy everything else except the mcmod.info
+    // copy everything else, thats not the mcmod.info
     from(sourceSets.main.resources.srcDirs) {
-        exclude 'mcmod.info'
+        exclude "mcmod.info"
     }
 }
 

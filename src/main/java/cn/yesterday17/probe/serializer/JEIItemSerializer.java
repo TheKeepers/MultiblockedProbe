@@ -18,6 +18,7 @@ public class JEIItemSerializer implements JsonSerializer<ZSRCFile.JEIItem> {
         ItemStack stack = src.getStack();
 
         try {
+            if (src.getIngredient().getModNameForSorting() == "multiblocked") return ingredient;
             ingredient.addProperty("name", src.getIngredient().getDisplayName());
             ingredient.addProperty("unlocalizedName", stack.getUnlocalizedName());
             ingredient.addProperty("modName", src.getIngredient().getModNameForSorting());

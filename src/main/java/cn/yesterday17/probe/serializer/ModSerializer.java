@@ -15,7 +15,8 @@ public class ModSerializer implements JsonSerializer<ModContainer> {
         JsonObject mod = new JsonObject();
 
         try {
-            mod.addProperty("modid", src.getModId());
+            if (src.getModId() == "multiblocked") return mod;
+            mod.addProperty("src.getModId()", src.getModId());
             mod.addProperty("name", src.getName());
             mod.addProperty("description", src.getMetadata().description);
             mod.addProperty("url", src.getMetadata().url);
